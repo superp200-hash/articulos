@@ -16,7 +16,7 @@
 .visual-image{display:none;border-top:1px solid #e4e7ec;padding:10px;background:#fafafa}
 .visual-image.open{display:block}
 .visual-image img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;border-radius:8px;cursor:zoom-in}
-</style></head><body><div class="wrap"><h1>ARTÍCULOS</h1><span class="version-tag">V21</span>
+</style></head><body><div class="wrap"><h1>ARTÍCULOS</h1><span class="version-tag">V22</span>
 <div class="tribute">
   <div>“Creado a partir de los apuntes del maestro Joakín.</div>
   <div>Sin él, seguiríamos pasando páginas como si fuera 1998.” 😂</div>
@@ -54,11 +54,9 @@ if(vis.length){
   out+=vis.map(v=>`<div class="visual-card">
     <div class="visual-head">
       <div><div class="visual-title">${hi(v.title,query)}</div><div class="visual-desc">${v.description}</div></div>
-      <button onclick="this.parentElement.nextElementSibling.classList.toggle('open')">Ver imagen</button>
+      <button onclick="const p=this.parentElement.nextElementSibling;p.classList.toggle('open');this.textContent=p.classList.contains('open')?'Ocultar imagen':'Ver imagen'">Ver imagen</button>
     </div>
-    <div class="visual-image">${Array.isArray(v.image)
-? v.image.map((im,i)=>`<img src="${im}" alt="${v.title} ${i+1}" loading="lazy" onclick="window.open(this.src,'_blank')">`).join('')
-: `<img src="${v.image}" alt="${v.title}" loading="lazy" onclick="window.open(this.src,'_blank')" style="cursor:zoom-in">`}</div>
+    <div class="visual-image"><img src="${v.image}" alt="${v.title}" loading="lazy" onclick="window.open(this.src,'_blank')"></div>
   </div>`).join('');
 }
 if(arr.length){
